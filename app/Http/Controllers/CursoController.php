@@ -40,12 +40,9 @@ class CursoController extends Controller
     public function update(Request $request)
     {
         try {
+            $dados = $request->except('id');
             $curso = Curso::find($request->id);
-            $curso->update([
-                'nome' => $request->nome,
-                'coordenador' => $request->coordenador,
-                'duracao' => $request->duracao
-            ]);
+            $curso->update($dados);
             return response()->json(['success' => true, 'message' => 'Curso Atualizado!'], 200);
         } catch (Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);

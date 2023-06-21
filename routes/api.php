@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,11 @@ Route::post('/curso/update', [CursoController::class, 'update']);
 Route::post('/curso/destroy', [CursoController::class, 'destroy']);
 Route::get('/curso/list', [CursoController::class, 'list']);
 Route::get('/curso/show/{id}', [CursoController::class, 'show']);
+
+
+Route::post('/aluno/store', [AlunoController::class, 'store']);
+Route::post('/aluno/update', [AlunoController::class, 'update']);
+Route::post('/aluno/destroy', [AlunoController::class, 'destroy']);
+Route::get('/aluno/list', [AlunoController::class, 'list']);
+Route::get('/aluno/show/{id}', [AlunoController::class, 'show']);
+Route::get('/aluno/login/{ra}', [AlunoController::class, 'login']);
