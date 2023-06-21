@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
-    
+
     public function store(Request $request)
     {
         try {
@@ -24,35 +24,43 @@ class CursoController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function list()
+    {
+        $cursos = Curso::all();
+        return response()->json(['success' => true, 'message' => "", "dados" => $cursos], 200);
+    }
+
     public function show(string $id)
     {
-        //
+        $curso = Curso::find($id);
+        return response()->json(['success' => true, 'message' => !empty($curso) ? "" : "Curso não encontrado!", "dados" => $curso], !empty($curso) ? 200 : 404);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function update(Request $request)
     {
-        //
+        try {
+            $curso = Curso::find($request->id);
+            $curso->update([
+                'nome' => $request->nome,
+                'coordenador' => $request->coordenador,
+                'duracao' => $request->duracao
+            ]);
+            return response()->json(['success' => true, 'message' => 'Curso Atualizado!'], 200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $curso = Curso::find($request->id);
+            $curso->delete();
+            return response()->json(['success' => true, 'message' => "Curso Excluído!"], 200);
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+        }
     }
 }

@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function list()
+    {
+        $users = User::all();
+        return response()->json(['success' => true, 'message' => "", "dados" => $users], 200);
+    }
+
+    public function show(string $id)
+    {
+        $user = User::find($id);
+        return response()->json(['success' => true, 'message' => !empty($user) ? "" : "Usuário não encontrado!", "dados" => $user], !empty($user) ? 200 : 404);
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
