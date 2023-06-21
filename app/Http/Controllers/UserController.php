@@ -19,7 +19,7 @@ class UserController extends Controller
         return response()->json(['success' => false, 'message' => "Usuário não autenticado!"], 404);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         try {
             $user = new User();
