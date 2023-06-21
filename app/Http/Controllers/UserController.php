@@ -50,8 +50,9 @@ class UserController extends Controller
     public function update(Request $request)
     {
         try {
+            $dados = $request->except('id');
             $user = User::find($request->id);
-            $user->update(['name' => $request->name, 'email' => $request->email, 'password' => bcrypt($request->password)]);
+            $user->update($dados);
             return response()->json(['success' => true, 'message' => "Usuário Atualizado!", 'dados' => $user], 200);
         } catch (Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
