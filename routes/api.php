@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,10 @@ Route::post('/autor/update', [AutorController::class, 'update']);
 Route::post('/autor/destroy', [AutorController::class, 'destroy']);
 Route::get('/autor/list', [AutorController::class, 'list']);
 Route::get('/autor/show/{id}', [AutorController::class, 'show']);
+
+
+Route::post('/editora/store', [EditoraController::class, 'store']);
+Route::post('/editora/update', [EditoraController::class, 'update']);
+Route::post('/editora/destroy', [EditoraController::class, 'destroy']);
+Route::get('/editora/list', [EditoraController::class, 'list']);
+Route::get('/editora/show/{id}', [EditoraController::class, 'show']);
