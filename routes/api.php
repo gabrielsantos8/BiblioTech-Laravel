@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,10 @@ Route::post('/aluno/destroy', [AlunoController::class, 'destroy']);
 Route::get('/aluno/list', [AlunoController::class, 'list']);
 Route::get('/aluno/show/{id}', [AlunoController::class, 'show']);
 Route::get('/aluno/login/{ra}', [AlunoController::class, 'login']);
+
+
+Route::post('/autor/store', [AutorController::class, 'store']);
+Route::post('/autor/update', [AutorController::class, 'update']);
+Route::post('/autor/destroy', [AutorController::class, 'destroy']);
+Route::get('/autor/list', [AutorController::class, 'list']);
+Route::get('/autor/show/{id}', [AutorController::class, 'show']);
