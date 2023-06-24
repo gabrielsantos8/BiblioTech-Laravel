@@ -4,6 +4,7 @@ use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EditoraController;
+use App\Http\Controllers\LivroController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +43,9 @@ Route::post('/editora/update', [EditoraController::class, 'update']);
 Route::post('/editora/destroy', [EditoraController::class, 'destroy']);
 Route::get('/editora/list', [EditoraController::class, 'list']);
 Route::get('/editora/show/{id}', [EditoraController::class, 'show']);
+
+Route::post('/livro/store', [LivroController::class, 'store']);
+Route::post('/livro/update', [LivroController::class, 'update']);
+Route::post('/livro/destroy', [LivroController::class, 'destroy']);
+Route::get('/livro/list/{idtipo}/{aluno_id}', [LivroController::class, 'list']);
+Route::get('/livro/show/{id}', [LivroController::class, 'show']);
