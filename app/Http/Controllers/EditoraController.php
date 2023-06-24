@@ -27,8 +27,8 @@ class EditoraController extends Controller
 
     public function list()
     {
-        $autores = Editora::all();
-        return response()->json(['success' => true, 'message' => "", "dados" => $autores], 200);
+        $editoras = Editora::all();
+        return response()->json(['success' => true, 'message' => "", "dados" => $editoras], 200);
     }
 
     public function show(string $id)
