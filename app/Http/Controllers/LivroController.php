@@ -15,13 +15,14 @@ class LivroController extends Controller
                          l.*
                         ,a.nome as autor
                         ,e.nome as editora
+                        ,CASE WHEN ? = 1 THEN 1 ELSE 0 END AS reservar
                   FROM livros l 
                   LEFT JOIN autors a on a.id = l.autor_id
                   LEFT JOIN editoras e on e.id = l.editora_id
-                  WHERE CASE WHEN ? = 1 THEN NOT EXISTS (select 1 from reservas r where r.aluno_id = ? and r.livro_id = l.id)
-                             WHEN ? = 2 THEN EXISTS (select 1 from reservas r where r.aluno_id = ? and r.livro_id = l.id)
+                  WHERE CASE WHEN ? = 1 THEN NOT EXISTS (select 1 from reservas r where r.aluno_id = ? and r.livro_id = l.id and current_date <= r.datafim)
+                             WHEN ? = 2 THEN EXISTS (select 1 from reservas r where r.aluno_id = ? and r.livro_id = l.id and current_date <= r.datafim)
                         END";
-        $bindings = [$idtipo, $aluno_id, $idtipo, $aluno_id];
+        $bindings = [$idtipo, $idtipo, $aluno_id, $idtipo, $aluno_id];
         $livros = DB::select($query, $bindings);
         return response()->json(['success' => true, 'message' => count($livros) > 0 ? "" : "Nenhum livro reservado!", "dados" => $livros], count($livros) > 0 ? 200 : 404);
     }

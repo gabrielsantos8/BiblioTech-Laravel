@@ -5,6 +5,7 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,3 +50,9 @@ Route::post('/livro/update', [LivroController::class, 'update']);
 Route::post('/livro/destroy', [LivroController::class, 'destroy']);
 Route::get('/livro/list/{idtipo}/{aluno_id}', [LivroController::class, 'list']);
 Route::get('/livro/show/{id}', [LivroController::class, 'show']);
+
+Route::post('/reserva/store', [ReservaController::class, 'store']);
+Route::post('/reserva/update', [ReservaController::class, 'update']);
+Route::post('/reserva/destroy', [ReservaController::class, 'destroy']);
+Route::get('/reserva/list', [ReservaController::class, 'list']);
+Route::get('/reserva/show/{id}', [ReservaController::class, 'show']);
