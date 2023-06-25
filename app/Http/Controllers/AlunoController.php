@@ -15,7 +15,7 @@ class AlunoController extends Controller
     {
         $aluno = DB::table('alunos')
             ->join('cursos', 'alunos.curso_id', '=', 'cursos.id')
-            ->select('alunos.*', 'cursos.nome as curso', 'cursos.id')
+            ->select('alunos.*', 'cursos.nome as curso')
             ->where([['ra', '=', $ra]])
             ->get();
         return response()->json(['success' => true, 'message' => $aluno->count() > 0 ? "" : "Aluno não encontrado!", "dados" => $aluno], !empty($aluno) ? 200 : 404);

@@ -32,7 +32,7 @@ class LivroController extends Controller
         $livro = DB::table('livros')
             ->join('autors', 'livros.autor_id', '=', 'autors.id')
             ->join('editoras', 'livros.editora_id', '=', 'editoras.id')
-            ->select('livros.*', 'autors.nome as autor', 'autors.id as autor_id', 'editoras.nome as editora', 'editoras.id as editora_id')
+            ->select('livros.*', 'autors.nome as autor', 'editoras.nome as editora')
             ->where([['livros.id', '=', $id]])
             ->get();
         return response()->json(['success' => true, 'message' => $livro->count() > 0 ? "" : "Livro não encontrado!", "dados" => $livro],  $livro->count() > 0 ? 200 : 404);

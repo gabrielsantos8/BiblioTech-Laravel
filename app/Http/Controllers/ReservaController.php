@@ -31,7 +31,7 @@ class ReservaController extends Controller
         $reservas = DB::table('reservas')
         ->join('livros', 'reservas.livro_id', '=', 'livros.id')
         ->join('alunos', 'reservas.aluno_id', '=', 'alunos.id')
-        ->select('reservas.*', 'livros.titulo as livro', 'livros.id as livro_id', 'alunos.nome as aluno', 'alunos.id as aluno_id')
+        ->select('reservas.*', 'livros.titulo as livro', 'alunos.nome as aluno')
         ->get();
         return response()->json(['success' => true, 'message' => "", "dados" => $reservas], 200);
     }
