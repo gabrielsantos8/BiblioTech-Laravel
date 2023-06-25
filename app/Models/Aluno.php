@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aluno extends Model
 {
-    protected $fillable = ['ra', 'nome', 'endereco', 'cidade', 'uf', 'telefone'];
+    protected $fillable = ['ra', 'nome', 'endereco', 'cidade', 'uf', 'telefone', 'curso_id'];
 
     use HasFactory;
 
