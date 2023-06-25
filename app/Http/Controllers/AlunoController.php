@@ -25,7 +25,7 @@ class AlunoController extends Controller
     {
         $alunos = DB::table('alunos')
             ->join('cursos', 'alunos.curso_id', '=', 'cursos.id')
-            ->select('alunos.*', 'cursos.nome as curso', 'cursos.id')
+            ->select('alunos.*', 'cursos.nome as curso', 'cursos.id as curso_id')
             ->get();
         return response()->json(['success' => true, 'message' => "", "dados" => $alunos], 200);
     }
